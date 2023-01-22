@@ -7,6 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -32,6 +36,28 @@ public class CustomerController {
         Customer customer = new Customer();
         model.addAttribute("customer", customer);
         return "new-customer";
+    }
+
+    @PostMapping(value = "/save")
+    // As the Model is received back from the view, @ModelAttribute
+    // creates a Customer based on the object you collected from
+    // the HTML page above
+    public String saveCustomer(@ModelAttribute("customer") Customer customer) {
+        customerService.saveCustomer(customer);
+        return "redirect:/";
+    }
+
+    @GetMapping("/edit/{id}")
+    // The path variable "id" is used to pull a customer from the database
+    public ModelAndView showEditCustomerPage(@PathVariable(name = "id") Long id) {
+        // Since the previous methods use Model, this one uses ModelAndView
+        // to get some experience using both. Model is more common these days,
+        // but ModelAndView accomplishes the same thing and can be useful in
+        // certain circumstances. The view name is passed to the constructor.
+        ModelAndView mav = new ModelAndView("edit-customer");
+        Customer customer = customerService.getCustomer(id);
+        mav.addObject("customer", customer);
+        return mav;
     }
 
 
