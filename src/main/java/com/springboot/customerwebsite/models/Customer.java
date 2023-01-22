@@ -20,4 +20,6 @@ public class Customer {
     private String emailAddress;
     private Integer age;
     private String address;
+
+    private String instrument;
 }
