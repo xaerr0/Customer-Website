@@ -24,8 +24,8 @@ public class InstrumentController {
     final CustomerService customerService;
 
     @GetMapping("/instruments")
-    public String viewHomePage(Model model) {
-        List<Instrument> instrumentList = instrumentService.getAllInstruments();
+    public String viewInstrumentHomePage(Model model) {
+       final List<Instrument> instrumentList = instrumentService.getAllInstruments();
         model.addAttribute("instrumentList", instrumentList);
         return "instruments";
     }
@@ -38,15 +38,12 @@ public class InstrumentController {
         return "new-instrument";
     }
 
-    @PostMapping("/save")
-    public String saveInstrument(@ModelAttribute("instrument") Instrument instrument, Model model) {
-        try {
-            instrumentService.saveInstrument(instrument);
-        } catch (IllegalArgumentException e) {
-            model.addAttribute("message", "Could not save instrument, " + e.getMessage());
-            return "error-page";
-        }
+    @PostMapping("/instruments/save")
+    public String saveInstrument(@ModelAttribute("instrument") Instrument instrument) {
+        instrumentService.saveInstrument(instrument);
         return "redirect:/";
     }
+
+
 
 }

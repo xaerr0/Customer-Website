@@ -45,27 +45,37 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
             );
 
         if (instrumentService.getAllInstruments().isEmpty()) {
-            instrumentService.saveInstrument(Instrument.builder()
-                    .name("Violin")
-                    .type("String")
-                    .brand("Stradivarius")
-                    .price(399.99)
-                    .totalInventory(2)
-                    .onHand(1)
-                    .rentedOut(1)
-                    .build());
-
-            instrumentService.saveInstrument(Instrument.builder()
-                    .name("Trumpet")
-                    .type("Brass")
-                    .brand("Bach")
-                    .price(399.99)
-                    .totalInventory(3)
-                    .onHand(2)
-                    .rentedOut(1)
-                    .build());
-
+            instrumentService.saveAllInstruments(Arrays.asList(
+                    Instrument.builder()
+                            .name("Violin")
+                            .type("String")
+                            .brand("Stradivarius")
+                            .price(399.99)
+                            .totalInventory(2)
+                            .onHand(1)
+                            .rentedOut(1)
+                            .build(),
+                    Instrument.builder()
+                            .name("Trumpet")
+                            .type("Brass")
+                            .brand("Bach")
+                            .price(299.99)
+                            .totalInventory(4)
+                            .onHand(1)
+                            .rentedOut(1)
+                            .build(),
+                    Instrument.builder()
+                            .name("Clarinet")
+                            .type("Woodwind")
+                            .brand("Yamaha")
+                            .price(159.99)
+                            .totalInventory(5)
+                            .onHand(1)
+                            .rentedOut(1)
+                            .build())
+            );
         }
+
 
     }
 

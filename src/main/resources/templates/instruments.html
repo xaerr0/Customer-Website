@@ -9,7 +9,7 @@
     <h1>Instrument List</h1>
     <a th:href="@{/instrument}">Add New Instrument</a>
     <br/>
-    <a th:href="@{/}">Customer List</a>
+<!--    <a th:href="@{/}">Customer List</a>-->
     <br/><br/>
     <table border="1" cellpadding="10">
         <thead>
@@ -21,19 +21,19 @@
             <th>Total Inventory</th>
             <th>On Hand</th>
             <th>Rented Out</th>
-            <th>Customer</th>
+<!--            <th>Customer</th>-->
         </tr>
         </thead>
         <tbody>
         <tr th:each="instrument : ${instrumentList}">
-            <td th:text="${instrument.name}"></td>
-            <td th:text="${instrument.type}"></td>
-            <td th:text="${instrument.brand}"></td>
-            <td th:text="${instrument.price}"></td>
-            <td th:text="${instrument.totalInventory}"></td>
-            <td th:text="${instrument.onHand}"></td>
-            <td th:text="${instrument.rentedOut}"></td>
-            <td th:text="${car.customer != null} ? ${car.customer.fullName}"></td>
+            <td th:text="${instrument.name}">Name</td>
+            <td th:text="${instrument.type}">Type</td>
+            <td th:text="${instrument.brand}">Brand</td>
+            <td th:text="${instrument.price}">Price</td>
+            <td th:text="${instrument.totalInventory}">Total Inventory</td>
+            <td th:text="${instrument.onHand}">On Hand</td>
+            <td th:text="${instrument.rentedOut}">Rented Out</td>
+<!--            <td th:text="${car.customer != null} ? ${car.customer.fullName}"></td>-->
         </tr>
         </tbody>
     </table>

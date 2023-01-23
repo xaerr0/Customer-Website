@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Create New Instrument</title>
+</head>
+<body>
+<div align="center">
+    <br/>
+    <form action="#" th:action="@{/save}" th:object="${instrument}" method="post">
+        <table border="0" cellpadding="10">
+            <tr>
+                <td>Instrument Name:</td>
+                <td><input type="text" th:field="*{name}" required/></td>
+            </tr>
+            <tr>
+                <td>Type:</td>
+                <td><input type="email" th:field="*{type}" required/></td>
+            </tr>
+            <tr>
+                <td>Brand:</td>
+                <td><input type="number" th:field="*{brand}" required/></td>
+            </tr>
+            <tr>
+                <td>Price:</td>
+                <td><textarea type="text" th:field="*{price}" required></textarea></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <button type="submit">Save</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

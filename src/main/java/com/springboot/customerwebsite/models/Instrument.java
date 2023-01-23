@@ -31,4 +31,13 @@ public class Instrument {
     private Customer customer;
 
 
+    private Integer getOnHand() {
+        Integer onHand = totalInventory - rentedOut;
+        return this.onHand;
+    }
+
+    private Integer getRentedOut() {
+        Integer rentedOut = totalInventory - onHand;
+        return this.rentedOut;
+    }
 }
