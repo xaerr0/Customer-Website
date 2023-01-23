@@ -15,15 +15,19 @@
             </tr>
             <tr>
                 <td>Type:</td>
-                <td><input type="email" th:field="*{type}" required/></td>
+                <td><input type="text" th:field="*{type}" required/></td>
             </tr>
             <tr>
                 <td>Brand:</td>
-                <td><input type="number" th:field="*{brand}" required/></td>
+                <td><input type="text" th:field="*{brand}" required/></td>
             </tr>
             <tr>
                 <td>Price:</td>
-                <td><textarea type="text" th:field="*{price}" required></textarea></td>
+                <td><textarea type="number" th:field="*{price}" required></textarea></td>
+            </tr>
+            <tr>
+                <td>Total Inventory:</td>
+                <td><textarea type="number" th:field="*{totalInventory}" required></textarea></td>
             </tr>
             <tr>
                 <td colspan="2">

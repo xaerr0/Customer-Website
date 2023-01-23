@@ -26,9 +26,9 @@ public class Instrument {
     private Integer rentedOut;
 
 
-    @OneToOne
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
+//    @OneToOne
+//    @JoinColumn(name = "customer_id")
+//    private Customer customer;
 
 
     private Integer getOnHand() {

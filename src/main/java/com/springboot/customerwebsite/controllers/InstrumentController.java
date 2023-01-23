@@ -7,14 +7,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
+@RequestMapping("/instruments")
 public class InstrumentController {
 
     @Autowired
@@ -23,27 +22,45 @@ public class InstrumentController {
     @Autowired
     final CustomerService customerService;
 
-    @GetMapping("/instruments")
+    @GetMapping("/")
     public String viewInstrumentHomePage(Model model) {
-       final List<Instrument> instrumentList = instrumentService.getAllInstruments();
+        final List<Instrument> instrumentList = instrumentService.getAllInstruments();
         model.addAttribute("instrumentList", instrumentList);
         return "instruments";
     }
 
 
-    @GetMapping("/new-instrument")
+    @GetMapping("/new")
     public String showNewInstrumentPage(Model model) {
         Instrument instrument = new Instrument();
         model.addAttribute("instrument", instrument);
         return "new-instrument";
     }
 
-    @PostMapping("/instruments/save")
+    @PostMapping(value = "/save")
     public String saveInstrument(@ModelAttribute("instrument") Instrument instrument) {
         instrumentService.saveInstrument(instrument);
-        return "redirect:/";
+        return "redirect:instruments/";
     }
 
+    @PostMapping("/edit/{id}")
+    public String updateInstrument(@PathVariable(name = "id") Long id, @ModelAttribute("instrument")
+    Instrument instrument, Model model) {
+        if (!id.equals(instrument.getId())) {
+            model.addAttribute("message",
+                    "Cannot update instrument id " + instrument.getId() + " doesn't match id to be " +
+                    "updated " + id + ".");
+            return "error-page";
+        }
+        instrumentService.saveInstrument(instrument);
+        return "redirect:instruments/";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteInstrument(@PathVariable(name = "id") Long id) {
+        instrumentService.deleteInstrument(id);
+        return "redirect:instruments/";
+    }
 
 
 }
