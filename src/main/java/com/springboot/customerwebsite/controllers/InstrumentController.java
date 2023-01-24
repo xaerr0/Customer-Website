@@ -19,10 +19,7 @@ public class InstrumentController {
     @Autowired
     final InstrumentService instrumentService;
 
-    @Autowired
-    final CustomerService customerService;
-
-    @GetMapping("/")
+    @GetMapping
     public String viewInstrumentHomePage(Model model) {
         final List<Instrument> instrumentList = instrumentService.getAllInstruments();
         model.addAttribute("instrumentList", instrumentList);
@@ -37,10 +34,10 @@ public class InstrumentController {
         return "new-instrument";
     }
 
-    @PostMapping(value = "/save")
+    @PostMapping("/save")
     public String saveInstrument(@ModelAttribute("instrument") Instrument instrument) {
         instrumentService.saveInstrument(instrument);
-        return "redirect:instruments/";
+        return "redirect:/instruments";
     }
 
     @PostMapping("/edit/{id}")
@@ -53,13 +50,13 @@ public class InstrumentController {
             return "error-page";
         }
         instrumentService.saveInstrument(instrument);
-        return "redirect:instruments/";
+        return "redirect:/instruments";
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteInstrument(@PathVariable(name = "id") Long id) {
         instrumentService.deleteInstrument(id);
-        return "redirect:instruments/";
+        return "redirect:/instruments";
     }
 
 

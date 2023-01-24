@@ -23,6 +23,7 @@ public class InstrumentServiceImpl implements InstrumentService {
     }
 
     @Override
+    @Transactional
     public Instrument saveInstrument(Instrument instrument) {
         return instrumentRepo.save(instrument);
     }
@@ -34,12 +35,14 @@ public class InstrumentServiceImpl implements InstrumentService {
     }
 
     @Override
+    @Transactional
     public void deleteInstrument(Long id) {
         instrumentRepo.deleteById(id);
 
     }
 
     @Override
+    @Transactional
     public List<Instrument> saveAllInstruments(List<Instrument> instrumentList) {
         return instrumentRepo.saveAll(instrumentList);
     }

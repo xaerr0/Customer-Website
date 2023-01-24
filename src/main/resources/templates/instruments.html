@@ -14,25 +14,30 @@
     <table border="1" cellpadding="10">
         <thead>
         <tr>
+            <th>Instrument ID</th>
             <th>Name</th>
             <th>Type</th>
             <th>Brand</th>
             <th>Price</th>
             <th>Total Inventory</th>
-            <th>On Hand</th>
-            <th>Rented Out</th>
+            <th>Action</th>
+<!--            <th>On Hand</th>-->
+<!--            <th>Rented Out</th>-->
 <!--            <th>Customer</th>-->
         </tr>
         </thead>
         <tbody>
         <tr th:each="instrument : ${instrumentList}">
+            <td th:text="${instrument.id}">Instrument ID</td>
             <td th:text="${instrument.name}">Name</td>
             <td th:text="${instrument.type}">Type</td>
             <td th:text="${instrument.brand}">Brand</td>
             <td th:text="${instrument.price}">Price</td>
             <td th:text="${instrument.totalInventory}">Total Inventory</td>
-            <td th:text="${instrument.onHand}">On Hand</td>
-            <td th:text="${instrument.rentedOut}">Rented Out</td>
+            <td><a th:href="@{'/instruments/edit/' + ${instrument.id}}">Edit</a>
+            <td><a th:href="@{'/instruments/delete/' + ${instrument.id}}">Delete</a></td>
+<!--            <td th:text="${instrument.onHand}">On Hand</td>-->
+<!--            <td th:text="${instrument.rentedOut}">Rented Out</td>-->
 <!--            <td th:text="${car.customer != null} ? ${car.customer.fullName}"></td>-->
         </tr>
         </tbody>
