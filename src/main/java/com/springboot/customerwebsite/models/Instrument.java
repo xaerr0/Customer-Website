@@ -22,23 +22,34 @@ public class Instrument {
     private String brand;
     private Double price;
     private Integer totalInventory;
+
+    @Transient
     private Integer onHand;
+
     private Integer rentedOut;
 
 
-    @ManyToOne
+    @OneToMany
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
 
-    private Integer getOnHand() {
-        Integer onHand = totalInventory - rentedOut;
-        return this.onHand;
+
+    public Integer getOnHand() {
+        onHand = totalInventory - rentedOut;
+        return onHand;
     }
 
-    private Integer getRentedOut() {
-        Integer rentedOut = totalInventory - onHand;
-        return this.rentedOut;
+
+    public void rentInstrument(Customer customer) {
+        customer.setInstrument(this);
+        this.customer = customer;
+        rentedOut++;
+    }
+
+    public void returnInstrument() {
+        customer = null;
+        rentedOut--;
     }
 
     @Override
