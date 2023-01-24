@@ -21,6 +21,9 @@ public class InstrumentController {
     @Autowired
     final InstrumentService instrumentService;
 
+    @Autowired
+    final CustomerService customerService;
+
     @GetMapping
     public String viewInstrumentHomePage(Model model) {
         final List<Instrument> instrumentList = instrumentService.getAllInstruments();
@@ -67,6 +70,32 @@ public class InstrumentController {
     public String deleteInstrument(@PathVariable(name = "id") Long id) {
         instrumentService.deleteInstrument(id);
         return "redirect:/instruments";
+    }
+
+    @GetMapping("/assign/{id}")
+    public String assignInstrument(@PathVariable(name = "id") Long id, Model model) {
+        Customer customer = customerService.getCustomer(id);
+        List<Instrument> instrumentList = instrumentService.getAvailableInstruments();
+        model.addAttribute("customer", customer);
+        model.addAttribute("instrumentList", instrumentList);
+        return "assign-instrument";
+    }
+
+    @PostMapping("/assign")
+    public String saveInstrumentAssignment(@RequestParam("customerId") Long customerId,
+                                           @RequestParam("instrumentId") Long instrumentId) {
+    Instrument instrument = instrumentService.getInstrument(instrumentId);
+    instrument.setCustomer(customerService.getCustomer(customerId));
+    instrumentService.saveInstrument(instrument);
+    return "redirect:/";
+    }
+
+    @RequestMapping("/remove/{id}")
+    public String removeInstrument(@PathVariable(name = "id") Long instrumentId) {
+        Instrument instrument = instrumentService.getInstrument(instrumentId);
+        instrument.setCustomer(null);
+        instrumentService.saveInstrument(instrument);
+        return "redirect:/";
     }
 
 

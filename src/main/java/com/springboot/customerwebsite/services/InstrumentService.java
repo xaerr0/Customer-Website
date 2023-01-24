@@ -1,6 +1,7 @@
 package com.springboot.customerwebsite.services;
 
 import com.springboot.customerwebsite.models.Instrument;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -14,4 +15,9 @@ public interface InstrumentService {
     void deleteInstrument(Long id);
 
     List<Instrument> saveAllInstruments(List<Instrument> instrumentList);
+
+    void deleteAllInstruments();
+
+    @Transactional
+    List<Instrument> getAvailableInstruments();
 }

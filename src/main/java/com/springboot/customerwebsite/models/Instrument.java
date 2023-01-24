@@ -26,9 +26,9 @@ public class Instrument {
     private Integer rentedOut;
 
 
-//    @OneToOne
-//    @JoinColumn(name = "customer_id")
-//    private Customer customer;
+    @ManyToOne
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
 
 
     private Integer getOnHand() {
@@ -39,5 +39,10 @@ public class Instrument {
     private Integer getRentedOut() {
         Integer rentedOut = totalInventory - onHand;
         return this.rentedOut;
+    }
+
+    @Override
+    public String toString() {
+        return (brand + " - " + name + " (" + price + ")");
     }
 }

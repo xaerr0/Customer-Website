@@ -44,11 +44,18 @@ public class CustomerServiceImpl implements CustomerService  {
         customerRepo.deleteById(id);
     }
 
+    @Override
+    public void deleteAllCustomers() {
+        customerRepo.deleteAll();
+    }
+
     // The saveAll function would do multiple INSERTS into the DB.
     @Override
     @Transactional
     public List<Customer> saveAllCustomers(List<Customer> customerList) {
         return customerRepo.saveAll(customerList);
     }
+
+
 
   }

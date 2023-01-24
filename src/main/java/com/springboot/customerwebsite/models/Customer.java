@@ -21,5 +21,6 @@ public class Customer {
     private Integer age;
     private String address;
 
-    private String instrument;
+    @OneToOne(mappedBy = "customer")
+    private Instrument instrument;
 }

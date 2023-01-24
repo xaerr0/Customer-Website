@@ -24,7 +24,7 @@
             <th>Name</th>
             <th>Type</th>
             <th>Brand</th>
-            <th>Price</th>
+            <th>Price/Mo</th>
             <th>Total Inventory</th>
             <th>Action</th>
 <!--            <th>On Hand</th>-->
@@ -41,7 +41,8 @@
             <td th:text="${instrument.price}">Price</td>
             <td th:text="${instrument.totalInventory}">Total Inventory</td>
             <td><a th:href="@{'/instruments/edit/' + ${instrument.id}}">Edit</a>
-            <td><a th:href="@{'/instruments/delete/' + ${instrument.id}}">Delete</a></td>
+            <a th:href="@{'/instruments/delete/' + ${instrument.id}}"
+               onclick="return confirm('Are you sure you want to delete this instrument?')">Delete</a></td>
 <!--            <td th:text="${instrument.onHand}">On Hand</td>-->
 <!--            <td th:text="${instrument.rentedOut}">Rented Out</td>-->
 <!--            <td th:text="${car.customer != null} ? ${car.customer.fullName}"></td>-->

@@ -11,6 +11,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
 
+//TODO Implement getOnHand & getRentedOut (Total Inv. changes based on assignments)
+//TODO Ensure that your "Assign" action will only list entities that are not currently assigned to a Customer.
+//TODO Complete the "Remove" action that removes a Customer/entity assignment.
+//TODO Verify the Customer "Delete" action removes the entity assignment (if one exists),
+// allowing the entity to be assigned to a new Customer.
+
 @SpringBootApplication
 public class CustomerWebsiteApplication implements CommandLineRunner {
 
@@ -29,6 +35,9 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
     // In this example, the run method saves some Customer data into the database for testing
     @Override
     public void run(String... args) throws Exception {
+//        customerService.deleteAllCustomers();
+//        instrumentService.deleteAllInstruments();
+
         if (customerService.getAllCustomers().isEmpty())
             customerService.saveAllCustomers(Arrays.asList(
                             Customer.builder()
@@ -44,41 +53,36 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
                     )
             );
 
-//
-
-//        if (instrumentService.getAllInstruments().isEmpty()) {
-        instrumentService.saveAllInstruments(Arrays.asList(
-                Instrument.builder()
-                        .name("Violin")
-                        .type("String")
-                        .brand("Stradivarius")
-                        .price(399.99)
-                        .totalInventory(2)
-                        .onHand(1)
-                        .rentedOut(1)
-                        .build(),
-                Instrument.builder()
-                        .name("Trumpet")
-                        .type("Brass")
-                        .brand("Bach")
-                        .price(299.99)
-                        .totalInventory(4)
-                        .onHand(1)
-                        .rentedOut(1)
-                        .build(),
-                Instrument.builder()
-                        .name("Clarinet")
-                        .type("Woodwind")
-                        .brand("Yamaha")
-                        .price(159.99)
-                        .totalInventory(5)
-                        .onHand(1)
-                        .rentedOut(1)
-                        .build())
-        );
+        if (instrumentService.getAllInstruments().isEmpty()) {
+            instrumentService.saveAllInstruments(Arrays.asList(
+                    Instrument.builder()
+                            .name("Violin")
+                            .type("String")
+                            .brand("Stradivarius")
+                            .price(399.99)
+                            .totalInventory(2)
+                            .onHand(1)
+                            .rentedOut(1)
+                            .build(),
+                    Instrument.builder()
+                            .name("Trumpet")
+                            .type("Brass")
+                            .brand("Bach")
+                            .price(299.99)
+                            .totalInventory(4)
+                            .onHand(1)
+                            .rentedOut(1)
+                            .build(),
+                    Instrument.builder()
+                            .name("Clarinet")
+                            .type("Woodwind")
+                            .brand("Yamaha")
+                            .price(159.99)
+                            .totalInventory(5)
+                            .onHand(1)
+                            .rentedOut(1)
+                            .build())
+            );
+        }
     }
-
-
-//    }
-
 }
