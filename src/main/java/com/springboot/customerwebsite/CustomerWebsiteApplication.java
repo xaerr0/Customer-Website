@@ -16,7 +16,7 @@ import java.util.Arrays;
 //TODO Complete the "Remove" action that removes a Customer/entity assignment.
 //TODO Verify the Customer "Delete" action removes the entity assignment (if one exists),
 // allowing the entity to be assigned to a new Customer.
-
+//TODO Remove Delete when Customer is assigned an instrument
 @SpringBootApplication
 public class CustomerWebsiteApplication implements CommandLineRunner {
 

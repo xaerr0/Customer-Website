@@ -26,6 +26,9 @@ public class InstrumentServiceImpl implements InstrumentService {
     @Override
     @Transactional
     public Instrument saveInstrument(Instrument instrument) {
+        if (instrument.getId() == null) {
+            instrument.setRentedOut(0);
+        }
         return instrumentRepo.save(instrument);
     }
 

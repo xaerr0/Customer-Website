@@ -85,7 +85,8 @@ public class InstrumentController {
     public String saveInstrumentAssignment(@RequestParam("customerId") Long customerId,
                                            @RequestParam("instrumentId") Long instrumentId) {
     Instrument instrument = instrumentService.getInstrument(instrumentId);
-    instrument.setCustomer(customerService.getCustomer(customerId));
+    Customer customer = customerService.getCustomer(customerId);
+    instrument.rentInstrument(customer);
     instrumentService.saveInstrument(instrument);
     return "redirect:/";
     }
@@ -93,7 +94,7 @@ public class InstrumentController {
     @RequestMapping("/remove/{id}")
     public String removeInstrument(@PathVariable(name = "id") Long instrumentId) {
         Instrument instrument = instrumentService.getInstrument(instrumentId);
-        instrument.setCustomer(null);
+        instrument.returnInstrument();
         instrumentService.saveInstrument(instrument);
         return "redirect:/";
     }
