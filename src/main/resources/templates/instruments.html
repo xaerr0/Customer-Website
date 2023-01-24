@@ -2,12 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <style>
+      tr:nth-of-type(odd) {
+      background-color:#ccc;
+    }
+</style>
     <title>Instrument Manager</title>
 </head>
 <body>
 <div align="center">
     <h1>Instrument List</h1>
-    <a th:href="@{/instruments/new}">Add New Instrument</a>
+    <a th:href="@{/instruments/new}">Add New Instrument</a>&nbsp;
+    &nbsp;<a th:href="@{/}">View Customer List</a>
     <br/>
 <!--    <a th:href="@{/}">Customer List</a>-->
     <br/><br/>

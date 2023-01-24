@@ -1,5 +1,6 @@
 package com.springboot.customerwebsite.controllers;
 
+import com.springboot.customerwebsite.models.Customer;
 import com.springboot.customerwebsite.models.Instrument;
 import com.springboot.customerwebsite.services.CustomerService;
 import com.springboot.customerwebsite.services.InstrumentService;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -40,7 +42,15 @@ public class InstrumentController {
         return "redirect:/instruments";
     }
 
-    @PostMapping("/edit/{id}")
+    @GetMapping("/edit/{id}")
+    public ModelAndView showEditInstrumentPage(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit-instrument");
+        Instrument instrument= instrumentService.getInstrument(id);
+        mav.addObject("instrument", instrument);
+        return mav;
+    }
+
+    @PostMapping("/update/{id}")
     public String updateInstrument(@PathVariable(name = "id") Long id, @ModelAttribute("instrument")
     Instrument instrument, Model model) {
         if (!id.equals(instrument.getId())) {
