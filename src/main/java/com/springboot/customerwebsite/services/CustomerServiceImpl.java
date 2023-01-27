@@ -23,6 +23,12 @@ public class CustomerServiceImpl implements CustomerService  {
         return customerRepo.findAll();
     }
 
+    @Override
+    public List<Customer> getAllCustomersById(List<Long> idList) {
+        return customerRepo.findAllById(idList);
+    }
+
+
     // The save function uses an INSERT query in the DB.
     @Override
     @Transactional

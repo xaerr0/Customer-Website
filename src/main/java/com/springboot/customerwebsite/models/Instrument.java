@@ -3,6 +3,7 @@ package com.springboot.customerwebsite.models;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @AllArgsConstructor
@@ -29,10 +30,8 @@ public class Instrument {
     private Integer rentedOut;
 
 
-    @OneToMany
-    @JoinColumn(name = "customer_id")
-    private Customer customer;
-
+    @OneToMany(mappedBy = "instrument")
+    private List<Customer> customers;
 
 
     public Integer getOnHand() {
@@ -43,12 +42,13 @@ public class Instrument {
 
     public void rentInstrument(Customer customer) {
         customer.setInstrument(this);
-        this.customer = customer;
+        customers.add(customer);
         rentedOut++;
     }
 
-    public void returnInstrument() {
-        customer = null;
+    public void returnInstrument(Customer customer) {
+        customers.remove(customer);
+        customer.setInstrument(null);
         rentedOut--;
     }
 

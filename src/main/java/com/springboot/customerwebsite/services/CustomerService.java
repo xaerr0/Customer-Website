@@ -8,6 +8,10 @@ import java.util.List;
 public interface CustomerService {
     List<Customer> getAllCustomers();
 
+//    List<Customer> getAllCustomersById(Iterable<Long> idList);
+
+    List<Customer> getAllCustomersById(List<Long> idList);
+
     Customer saveCustomer(Customer customer);
 
     Customer getCustomer(Long id);

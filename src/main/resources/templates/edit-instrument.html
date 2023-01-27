@@ -10,6 +10,7 @@
         <br/>
         <form action="#" th:action="@{'/instruments/update/' + ${instrument.id}}" th:object="${instrument}"
               method="post">
+            <input type="hidden" th:field="*{rentedOut}"/>
             <table border="0" cellpadding="10">
                 <tr>
                     <td>Instrument ID:</td>

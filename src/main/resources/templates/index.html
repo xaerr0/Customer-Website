@@ -43,7 +43,7 @@
                 <a th:text="${(customer.instrument == null) ? 'Assign Instrument' : ''}"
                 th:href="@{'/instruments/assign/' + ${customer.id}}"></a>
                 <a th:text="${(customer.instrument != null) ? 'Remove Instrument' : ''}"
-                   th:href="${(customer.instrument != null) ? '/instruments/remove/' + customer.instrument.getId() : ''}"></a>
+                   th:href="${(customer.instrument != null) ? '/instruments/remove/' + customer.instrument.getId() + '/' + customer.id : ''}"></a>
             </td>
         </tr>
         </tbody>

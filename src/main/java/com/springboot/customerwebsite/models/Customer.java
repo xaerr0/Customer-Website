@@ -21,6 +21,10 @@ public class Customer {
     private Integer age;
     private String address;
 
-    @OneToOne(mappedBy = "customer")
+    @ManyToOne
+    @JoinColumn(name = "instrument_id")
     private Instrument instrument;
+
+    public void setInstrument() {
+    }
 }

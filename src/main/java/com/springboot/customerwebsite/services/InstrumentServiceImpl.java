@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,6 +28,7 @@ public class InstrumentServiceImpl implements InstrumentService {
     @Transactional
     public Instrument saveInstrument(Instrument instrument) {
         if (instrument.getId() == null) {
+
             instrument.setRentedOut(0);
         }
         return instrumentRepo.save(instrument);
@@ -59,7 +61,19 @@ public class InstrumentServiceImpl implements InstrumentService {
     @Override
     @Transactional
     public List<Instrument> getAvailableInstruments() {
-        return getAllInstruments().stream().filter(c -> c.getCustomer() == null)
-                .collect(Collectors.toList());
+        // manually checking for available instruments
+        List<Instrument> allInstruments = getAllInstruments();
+        List<Instrument> availableInstruments = new ArrayList<>();
+
+        availableInstruments = allInstruments.stream().filter(i -> i.getOnHand() > 0).collect(Collectors.toList());
+
+//        for (Instrument instrument : allInstruments) {
+//            if (instrument.getOnHand() > 0) {
+//                availableInstruments.add(instrument);
+//            }
+//        }
+        return availableInstruments;
+
+
     }
 }

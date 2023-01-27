@@ -45,17 +45,18 @@ public class InstrumentController {
         return "redirect:/instruments";
     }
 
+    //TODO How to do this without mav?
     @GetMapping("/edit/{id}")
     public ModelAndView showEditInstrumentPage(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("edit-instrument");
-        Instrument instrument= instrumentService.getInstrument(id);
+        Instrument instrument = instrumentService.getInstrument(id);
         mav.addObject("instrument", instrument);
         return mav;
     }
 
     @PostMapping("/update/{id}")
-    public String updateInstrument(@PathVariable(name = "id") Long id, @ModelAttribute("instrument")
-    Instrument instrument, Model model) {
+    public String updateInstrument(@PathVariable(name = "id") Long id,
+                                   @ModelAttribute("instrument") Instrument instrument, Model model) {
         if (!id.equals(instrument.getId())) {
             model.addAttribute("message",
                     "Cannot update instrument id " + instrument.getId() + " doesn't match id to be " +
@@ -72,6 +73,7 @@ public class InstrumentController {
         return "redirect:/instruments";
     }
 
+
     @GetMapping("/assign/{id}")
     public String assignInstrument(@PathVariable(name = "id") Long id, Model model) {
         Customer customer = customerService.getCustomer(id);
@@ -84,17 +86,19 @@ public class InstrumentController {
     @PostMapping("/assign")
     public String saveInstrumentAssignment(@RequestParam("customerId") Long customerId,
                                            @RequestParam("instrumentId") Long instrumentId) {
-    Instrument instrument = instrumentService.getInstrument(instrumentId);
-    Customer customer = customerService.getCustomer(customerId);
-    instrument.rentInstrument(customer);
-    instrumentService.saveInstrument(instrument);
-    return "redirect:/";
+        Instrument instrument = instrumentService.getInstrument(instrumentId);
+        Customer customer = customerService.getCustomer(customerId);
+        instrument.rentInstrument(customer);
+        instrumentService.saveInstrument(instrument);
+        return "redirect:/";
     }
 
-    @RequestMapping("/remove/{id}")
-    public String removeInstrument(@PathVariable(name = "id") Long instrumentId) {
+
+    @GetMapping("/remove/{instrumentId}/{customerId}")
+    public String removeInstrument(@PathVariable(name = "instrumentId") Long instrumentId, @PathVariable(name = "customerId") Long customerId) {
         Instrument instrument = instrumentService.getInstrument(instrumentId);
-        instrument.returnInstrument();
+        Customer customer = customerService.getCustomer(customerId);
+        instrument.returnInstrument(customer);
         instrumentService.saveInstrument(instrument);
         return "redirect:/";
     }
