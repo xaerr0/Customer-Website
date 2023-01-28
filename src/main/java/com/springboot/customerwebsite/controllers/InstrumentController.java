@@ -24,13 +24,13 @@ public class InstrumentController {
     @Autowired
     final CustomerService customerService;
 
+
     @GetMapping
     public String viewInstrumentHomePage(Model model) {
         final List<Instrument> instrumentList = instrumentService.getAllInstruments();
         model.addAttribute("instrumentList", instrumentList);
         return "instruments";
     }
-
 
     @GetMapping("/new")
     public String showNewInstrumentPage(Model model) {
@@ -45,7 +45,6 @@ public class InstrumentController {
         return "redirect:/instruments";
     }
 
-    //TODO How to do this without mav?
     @GetMapping("/edit/{id}")
     public ModelAndView showEditInstrumentPage(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("edit-instrument");
@@ -73,7 +72,6 @@ public class InstrumentController {
         return "redirect:/instruments";
     }
 
-
     @GetMapping("/assign/{id}")
     public String assignInstrument(@PathVariable(name = "id") Long id, Model model) {
         Customer customer = customerService.getCustomer(id);
@@ -93,7 +91,6 @@ public class InstrumentController {
         return "redirect:/";
     }
 
-
     @GetMapping("/remove/{instrumentId}/{customerId}")
     public String removeInstrument(@PathVariable(name = "instrumentId") Long instrumentId, @PathVariable(name = "customerId") Long customerId) {
         Instrument instrument = instrumentService.getInstrument(instrumentId);
@@ -102,6 +99,4 @@ public class InstrumentController {
         instrumentService.saveInstrument(instrument);
         return "redirect:/";
     }
-
-
 }

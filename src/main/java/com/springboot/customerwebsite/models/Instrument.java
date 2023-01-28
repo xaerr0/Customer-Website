@@ -33,12 +33,10 @@ public class Instrument {
     @OneToMany(mappedBy = "instrument")
     private List<Customer> customers;
 
-
     public Integer getOnHand() {
         onHand = totalInventory - rentedOut;
         return onHand;
     }
-
 
     public void rentInstrument(Customer customer) {
         customer.setInstrument(this);
