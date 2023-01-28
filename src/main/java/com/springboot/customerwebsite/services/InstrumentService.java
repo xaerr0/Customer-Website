@@ -19,9 +19,6 @@ public interface InstrumentService {
 
     void deleteAllInstruments();
 
-//    @Transactional
-//    List<Instrument> getAvailableInstruments();
-
     @Transactional
     List<Instrument> getAvailableInstruments();
 }
