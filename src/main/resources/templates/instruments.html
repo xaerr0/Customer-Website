@@ -15,7 +15,6 @@
     <a th:href="@{/instruments/new}">Add New Instrument</a>&nbsp;
     &nbsp;<a th:href="@{/}">View Customer List</a>
     <br/>
-<!--    <a th:href="@{/}">Customer List</a>-->
     <br/><br/>
     <table border="1" cellpadding="10">
         <thead>
@@ -29,7 +28,6 @@
             <th>On Hand</th>
             <th>Rented Out</th>
             <th>Action</th>
-            <!--            <th>Customer</th>-->
         </tr>
         </thead>
         <tbody>
@@ -45,8 +43,6 @@
             <td><a th:href="@{'/instruments/edit/' + ${instrument.id}}">Edit</a>
             <a th:href="@{'/instruments/delete/' + ${instrument.id}}"
                onclick="return confirm('Are you sure you want to delete this instrument?')">Delete</a></td>
-
-<!--            <td th:text="${car.customer != null} ? ${car.customer.fullName}"></td>-->
         </tr>
         </tbody>
     </table>

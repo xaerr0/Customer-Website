@@ -73,7 +73,5 @@ public class InstrumentServiceImpl implements InstrumentService {
 //            }
 //        }
         return availableInstruments;
-
-
     }
 }

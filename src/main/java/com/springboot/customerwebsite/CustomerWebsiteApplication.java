@@ -22,11 +22,10 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
     @Autowired
     private InstrumentService instrumentService;
 
-    // The main method is defined herer which will start your application
+    // The main method is defined here which will start your application
     public static void main(String[] args) {
         SpringApplication.run(CustomerWebsiteApplication.class, args);
     }
-
     // You can also define a run method which performs an operation at runtime
     // In this example, the run method saves some Customer data into the database for testing
     @Override
