@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
-public class CustomerServiceImpl implements CustomerService  {
+public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     final CustomerRepo customerRepo;
@@ -27,7 +27,6 @@ public class CustomerServiceImpl implements CustomerService  {
     public List<Customer> getAllCustomersById(List<Long> idList) {
         return customerRepo.findAllById(idList);
     }
-
 
     // The save function uses an INSERT query in the DB.
     @Override
@@ -61,7 +60,4 @@ public class CustomerServiceImpl implements CustomerService  {
     public List<Customer> saveAllCustomers(List<Customer> customerList) {
         return customerRepo.saveAll(customerList);
     }
-
-
-
-  }
+}

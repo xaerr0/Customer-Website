@@ -19,6 +19,7 @@ public class InstrumentServiceImpl implements InstrumentService {
     @Autowired
     final InstrumentRepo instrumentRepo;
 
+
     @Override
     public List<Instrument> getAllInstruments() {
         return instrumentRepo.findAll();
@@ -28,7 +29,6 @@ public class InstrumentServiceImpl implements InstrumentService {
     @Transactional
     public Instrument saveInstrument(Instrument instrument) {
         if (instrument.getId() == null) {
-
             instrument.setRentedOut(0);
         }
         return instrumentRepo.save(instrument);
@@ -44,7 +44,6 @@ public class InstrumentServiceImpl implements InstrumentService {
     @Transactional
     public void deleteInstrument(Long id) {
         instrumentRepo.deleteById(id);
-
     }
 
     @Override
