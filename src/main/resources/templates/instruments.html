@@ -6,7 +6,8 @@
       tr:nth-of-type(odd) {
       background-color:#ccc;
     }
-</style>
+
+    </style>
     <title>Instrument Manager</title>
 </head>
 <body>
@@ -41,8 +42,8 @@
             <td th:text="${instrument.onHand}">On Hand</td>
             <td th:text="${instrument.rentedOut}">Rented Out</td>
             <td><a th:href="@{'/instruments/edit/' + ${instrument.id}}">Edit</a>
-            <a th:href="@{'/instruments/delete/' + ${instrument.id}}"
-               onclick="return confirm('Are you sure you want to delete this instrument?')">Delete</a></td>
+                <a th:href="@{'/instruments/delete/' + ${instrument.id}}"
+                   onclick="return confirm('Are you sure you want to delete this instrument?')">Delete</a></td>
         </tr>
         </tbody>
     </table>
