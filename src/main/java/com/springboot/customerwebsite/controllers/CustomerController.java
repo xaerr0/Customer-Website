@@ -19,12 +19,16 @@ public class CustomerController {
     private final CustomerService customerService;
 
     @GetMapping("/")
-    public String viewHomePage(Model model) {
+    public String viewHomePage() {
+        return "/index";
+    }
+    @GetMapping("/customer-list")
+    public String viewCustomerList(Model model) {
         // Here you call the service to retrieve all the customers
         final List<Customer> customerList = customerService.getAllCustomers();
         // Once the customers are retrieved, you can store them in model and return it to the view
         model.addAttribute("customerList", customerList);
-        return "index";
+        return "customer-list";
     }
 
     @GetMapping("/new")
