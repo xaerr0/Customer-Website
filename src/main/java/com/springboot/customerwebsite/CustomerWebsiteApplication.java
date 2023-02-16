@@ -61,6 +61,10 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
                     .username("admin")
                     .email("admin@email.com")
                     .password(passwordEncoder.encode("admin"))
+                    .isAccountNonExpired(true)
+                    .isEnabled(true)
+                    .isCredentialsNonExpired(true)
+                    .isAccountNonLocked(true)
                     .role(admin)
                     .build();
             userRepo.save(superUser);

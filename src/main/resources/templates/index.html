@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+
 <head>
     <meta charset="UTF-8">
     <title>Welcome!</title>
@@ -7,7 +9,7 @@
 <body>
 
 <h1>Welcome</h1>
-<a href="url">Click here to create an account</a>
+<a th:href="@{/register}">Click here to create an account</a>
 
 </body>
 </html>

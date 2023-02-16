@@ -4,10 +4,15 @@ import com.springboot.customerwebsite.models.Role;
 import com.springboot.customerwebsite.models.User;
 import com.springboot.customerwebsite.repositories.RoleRepo;
 import com.springboot.customerwebsite.repositories.UserRepo;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+@Service
+@RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService{
 
     @Autowired
