@@ -27,4 +27,20 @@ public class User {
     @Column(nullable = false)
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
+
+
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Role role;
+
+    @Column(nullable = false)
+    private boolean isAccountNonExpired = true;
+
+    @Column(nullable = false)
+    private boolean isAccountNonLocked = true;
+
+    @Column(nullable = false)
+    private boolean isCredentialsNonExpired = true;
+
+    @Column(nullable = false)
+    private boolean isEnabled = true;
 }
