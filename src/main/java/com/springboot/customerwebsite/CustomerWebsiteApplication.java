@@ -1,11 +1,11 @@
 package com.springboot.customerwebsite;
 
-import com.springboot.customerwebsite.models.Customer;
-import com.springboot.customerwebsite.models.Instrument;
-import com.springboot.customerwebsite.models.Role;
-import com.springboot.customerwebsite.models.User;
-import com.springboot.customerwebsite.repositories.RoleRepo;
-import com.springboot.customerwebsite.repositories.UserRepo;
+import com.springboot.customerwebsite.models.UserMeta;
+import com.springboot.customerwebsite.models.securitymodels.Authority;
+import com.springboot.customerwebsite.models.securitymodels.AuthorityEnum;
+import com.springboot.customerwebsite.models.securitymodels.UserPrincipal;
+import com.springboot.customerwebsite.repositories.AuthorityRepo;
+import com.springboot.customerwebsite.repositories.UserPrincipalRepo;
 import com.springboot.customerwebsite.services.CustomerService;
 import com.springboot.customerwebsite.services.InstrumentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +16,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Arrays;
 
-import static com.springboot.customerwebsite.models.Role.Roles.ROLE_ADMIN;
-import static com.springboot.customerwebsite.models.Role.Roles.ROLE_USER;
 
 
 @SpringBootApplication
@@ -30,10 +28,10 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
     private InstrumentService instrumentService;
 
     @Autowired
-    RoleRepo roleRepo;
+    AuthorityRepo authorityRepo;
 
     @Autowired
-    UserRepo userRepo;
+    UserPrincipalRepo userPrincipalRepo;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -48,26 +46,29 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Role user = Role.builder().role(ROLE_USER).build();
-        Role admin = Role.builder().role(ROLE_ADMIN).build();
+        Authority userAuth = Authority.builder().authority(AuthorityEnum.ROLE_USER).build();
+        Authority adminAuth = Authority.builder().authority(AuthorityEnum.ROLE_ADMIN).build();
 
 
-        if (roleRepo.findAll().isEmpty()) {
-            roleRepo.saveAll(Arrays.asList(user, admin));
+        if (authorityRepo.findAll().isEmpty()) {
+            authorityRepo.saveAll(Arrays.asList(userAuth, adminAuth));
         }
 
-        if (userRepo.findAll().isEmpty()) {
-            User superUser  = User.builder()
+        UserMeta admin = UserMeta.builder().name("Super User").email("test@test.com").build();
+
+        if (userPrincipalRepo.findAll().isEmpty()) {
+            UserPrincipal superUser  = UserPrincipal.builder()
                     .username("admin")
                     .email("admin@email.com")
-                    .password(passwordEncoder.encode("admin"))
+                    .password(passwordEncoder.encode("adminadmin"))
                     .isAccountNonExpired(true)
                     .isEnabled(true)
                     .isCredentialsNonExpired(true)
                     .isAccountNonLocked(true)
-                    .role(admin)
+                    .authorities(Arrays.asList(userAuth,adminAuth))
+                    .userMeta(admin)
                     .build();
-            userRepo.save(superUser);
+            userPrincipalRepo.save(superUser);
         }
 
 

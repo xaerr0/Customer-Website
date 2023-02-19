@@ -1,11 +1,9 @@
 package com.springboot.customerwebsite.repositories;
 
-
-import com.springboot.customerwebsite.models.Role;
+import com.springboot.customerwebsite.models.UserMeta;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-
-public interface RoleRepo extends JpaRepository<Role, Long> {
-    Role findRoleById(Long id);
+@Repository
+public interface UserMetaRepo extends JpaRepository<UserMeta, Long> {
 }
