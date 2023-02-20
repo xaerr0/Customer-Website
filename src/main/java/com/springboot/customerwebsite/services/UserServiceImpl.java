@@ -1,21 +1,20 @@
 package com.springboot.customerwebsite.services;
 
+//import com.springboot.customerwebsite.models.UserMeta;
+
 import com.springboot.customerwebsite.models.securitymodels.UserPrincipal;
 import com.springboot.customerwebsite.repositories.AuthorityRepo;
-import com.springboot.customerwebsite.repositories.UserMetaRepo;
 import com.springboot.customerwebsite.repositories.UserPrincipalRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 
 @Service
 @RequiredArgsConstructor
-@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
     @Autowired
@@ -27,23 +26,26 @@ public class UserServiceImpl implements UserService {
     @Autowired
     PasswordEncoder encoder;
 
-    @Autowired
-    UserMetaRepo userMetaRepo;
+//    @Autowired
+//    UserMetaRepo userMetaRepo;
 
 
     @Override
-
     public UserPrincipal saveUser(UserPrincipal user) throws Exception {
-        if (userPrincipalRepo.findByEmail(user.getEmail()) != null) {
-            throw new Exception("User already exists");
-        } else {
-            checkPassword(user.getPassword());
-            user.setPassword(encoder.encode(user.getPassword()));
-            user.setAuthorities(Collections.singletonList(authorityRepo.findRoleById(1L)));
+//        if (userPrincipalRepo.findByEmail(user.getEmail()).isPresent()) {
+//            throw new Exception("User already exists");
+//        } else {
+        user.setPassword(encoder.encode(user.getPassword()));
+        user.setAuthorities(Collections.singletonList(authorityRepo.findRoleById(1L)));
+        checkPassword(user.getPassword());
+        try {
             return userPrincipalRepo.save(user);
-
+        } catch (Exception e) {
+            throw new Exception(e.getMessage(), e.getCause());
         }
+
     }
+//    }
 
     @Override
     public UserPrincipal loadUserByUsername(String username) throws UsernameNotFoundException {

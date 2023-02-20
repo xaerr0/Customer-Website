@@ -12,13 +12,21 @@ import javax.persistence.*;
 @Getter
 @Setter
 public class Customer {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String fullName;
-    private String emailAddress;
+    @Column(nullable = false)
+    private String firstName;
+
+    @Column(nullable = false)
+    private String lastName;
+
+    @Column(nullable = false)
     private Integer age;
+
+    @Column(nullable = false)
     private String address;
 
     @ManyToOne
@@ -26,5 +34,10 @@ public class Customer {
     private Instrument instrument;
 
     public void setInstrument() {
+    }
+
+    public Customer(String firstName, String lastName, String email) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 }

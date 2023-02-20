@@ -1,10 +1,12 @@
 package com.springboot.customerwebsite.controllers;
 
 import com.springboot.customerwebsite.models.Customer;
+import com.springboot.customerwebsite.models.securitymodels.UserPrincipal;
 import com.springboot.customerwebsite.services.CustomerService;
 import com.springboot.customerwebsite.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -27,15 +29,7 @@ public class CustomerController {
     public String viewHomePage() {
         return "/index";
     }
-    @GetMapping("/customer-list")
-    public String viewCustomerList(Model model, Principal principal) {
-//        userService.loadUserByUsername(principal.getName());
-        // Here you call the service to retrieve all the customers
-        final List<Customer> customerList = customerService.getAllCustomers();
-        // Once the customers are retrieved, you can store them in model and return it to the view
-        model.addAttribute("customerList", customerList);
-        return "customer-list";
-    }
+
 
     @GetMapping("/new")
     public String showNewCustomerPage(Model model) {
@@ -49,8 +43,11 @@ public class CustomerController {
     // As the Model is received back from the view, @ModelAttribute
     // creates a Customer based on the object you collected from
     // the HTML page above
-    public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-        customerService.saveCustomer(customer);
+    public String saveCustomer(@ModelAttribute("customer") Customer customer, Authentication authentication) throws Exception {
+        UserPrincipal user = (UserPrincipal) authentication.getPrincipal();
+//        customer = customerService.saveCustomer(customer);
+        user.setCustomer(customer);
+        userService.saveUser(user);
         return "redirect:/";
     }
 

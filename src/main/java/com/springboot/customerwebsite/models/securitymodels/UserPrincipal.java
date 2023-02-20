@@ -1,7 +1,8 @@
 package com.springboot.customerwebsite.models.securitymodels;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.springboot.customerwebsite.models.UserMeta;
+import com.springboot.customerwebsite.models.Customer;
+//import com.springboot.customerwebsite.models.UserMeta;
 import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -50,15 +51,16 @@ public class UserPrincipal implements UserDetails {
     @Column(nullable = false)
     private boolean isEnabled = true;
 
-    @OneToOne(cascade = CascadeType.PERSIST, optional = false)
-    private UserMeta userMeta;
+    //TODO Had to change this to CasecadeType.MERGE from PERSIST to get the app to run. What exactly does that do?
+    @OneToOne(cascade = CascadeType.MERGE, optional = true)
+    private Customer customer;
 
-    public UserPrincipal(String username, String email, String password, List<Authority> authorities, UserMeta userMeta) {
+    public UserPrincipal(String username, String email, String password, List<Authority> authorities, Customer customer) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.authorities = authorities;
-        this.userMeta = userMeta;
+        this.customer = customer;
 
 
     }

@@ -1,10 +1,12 @@
 package com.springboot.customerwebsite;
 
-import com.springboot.customerwebsite.models.UserMeta;
+
+import com.springboot.customerwebsite.models.Customer;
 import com.springboot.customerwebsite.models.securitymodels.Authority;
 import com.springboot.customerwebsite.models.securitymodels.AuthorityEnum;
 import com.springboot.customerwebsite.models.securitymodels.UserPrincipal;
 import com.springboot.customerwebsite.repositories.AuthorityRepo;
+import com.springboot.customerwebsite.repositories.CustomerRepo;
 import com.springboot.customerwebsite.repositories.UserPrincipalRepo;
 import com.springboot.customerwebsite.services.CustomerService;
 import com.springboot.customerwebsite.services.InstrumentService;
@@ -17,24 +19,21 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import java.util.Arrays;
 
 
-
 @SpringBootApplication
 public class CustomerWebsiteApplication implements CommandLineRunner {
 
     @Autowired
-    private CustomerService customerService;
-
-    @Autowired
-    private InstrumentService instrumentService;
-
-    @Autowired
     AuthorityRepo authorityRepo;
-
+    @Autowired
+    CustomerRepo customerRepo;
     @Autowired
     UserPrincipalRepo userPrincipalRepo;
-
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    private CustomerService customerService;
+    @Autowired
+    private InstrumentService instrumentService;
 
     // The main method is defined here which will start your application
     public static void main(String[] args) {
@@ -54,10 +53,17 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
             authorityRepo.saveAll(Arrays.asList(userAuth, adminAuth));
         }
 
-        UserMeta admin = UserMeta.builder().name("Super User").email("test@test.com").build();
+
+        Customer customer = Customer.builder()
+                .firstName("Customer First Name")
+                .lastName("Customer Last Name")
+                .address("Customer Address One")
+                .age(30)
+                .build();
+        customerRepo.save(customer);
 
         if (userPrincipalRepo.findAll().isEmpty()) {
-            UserPrincipal superUser  = UserPrincipal.builder()
+            UserPrincipal superUser = UserPrincipal.builder()
                     .username("admin")
                     .email("admin@email.com")
                     .password(passwordEncoder.encode("adminadmin"))
@@ -65,27 +71,11 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
                     .isEnabled(true)
                     .isCredentialsNonExpired(true)
                     .isAccountNonLocked(true)
-                    .authorities(Arrays.asList(userAuth,adminAuth))
-                    .userMeta(admin)
+                    .authorities(Arrays.asList(userAuth, adminAuth))
+                    .customer(customer)
                     .build();
             userPrincipalRepo.save(superUser);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 ////        customerService.deleteAllCustomers();
@@ -137,7 +127,6 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
 //                            .build())
 //            );
 //        }
-
 
 
     }
