@@ -16,12 +16,12 @@
     <form action="#" th:action="@{/save}" th:object="${customer}" method="post">
         <table border="0" cellpadding="10">
             <tr>
-                <td>Customer Name:</td>
-                <td><input type="text" th:field="*{fullName}" required/></td>
+                <td>First Name:</td>
+                <td><input type="text" th:field="*{firstName}" required/></td>
             </tr>
             <tr>
-                <td>Email Address:</td>
-                <td><input type="email" th:field="*{emailAddress}" required/></td>
+                <td>Last Name:</td>
+                <td><input type="text" th:field="*{lastName}" required/></td>
             </tr>
             <tr>
                 <td>Age:</td>
