@@ -19,7 +19,8 @@ public class SecurityConfig {
                 .authorizeRequests(auth -> auth
                         .antMatchers("/", "/webjars/**", "/css/**",
                         "/login/**", "/images/**", "/register", "/error", "/landing-page").permitAll()
-                        .antMatchers("/customer-list").hasRole("ADMIN")
+                        .antMatchers("/customer-list", "/admin-dashboard").hasRole("ADMIN")
+                        .antMatchers("/user-dashboard").hasRole("USER")
                         .anyRequest().hasRole("USER"))
                 .formLogin()
                 .loginPage("/login").permitAll();
