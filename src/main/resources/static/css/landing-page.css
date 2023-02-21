@@ -1,25 +1,20 @@
+#top {
+color: white;
+}
+
 .jumbotron {
+
 				background-image: url('https://images.wallpaperscraft.com/image/single/drums_musical_instrument_installation_172930_3840x2400.jpg');
 				background-size: cover;
 				background-position: center;
 				background-attachment: fixed;
 				min-height: 100vh;
-}
-
-	h1 {
-		color: white;
-	}
-
-p {
-	color: white;
-}
-
+			}
 .btn {
 	margin-left: 80px;
 		margin-right: 80px;
 	 width: 200px;
 }
-
 .container {
-	padding-top: 25%
+	padding-top: 20%
 }
