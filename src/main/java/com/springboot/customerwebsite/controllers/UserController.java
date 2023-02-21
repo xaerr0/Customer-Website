@@ -46,7 +46,7 @@ public class UserController {
         UserPrincipal user = userService.loadUserByUsername(principal.getName());
 //        model.addAttribute("principal",principal);
         model.addAttribute(user);
-        return "welcome";
+        return "/admin-dashboard";
     }
 
     @GetMapping("/login")
@@ -54,9 +54,9 @@ public class UserController {
         return "/login";
     }
 
-    @GetMapping("/landing-page")
-    public ModelAndView landingPage() {
-        ModelAndView modelAndView = new ModelAndView("landing-page");
-        return modelAndView;
-    }
+//    @GetMapping("/landing-page")
+//    public ModelAndView landingPage() {
+//        ModelAndView modelAndView = new ModelAndView("landing-page");
+//        return modelAndView;
+//    }
 }

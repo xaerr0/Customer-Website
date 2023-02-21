@@ -1,10 +1,12 @@
 package com.springboot.customerwebsite.controllers;
 
 import com.springboot.customerwebsite.models.Customer;
+import com.springboot.customerwebsite.models.securitymodels.UserPrincipal;
 import com.springboot.customerwebsite.services.CustomerService;
 import com.springboot.customerwebsite.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,4 +34,17 @@ public class AdminController {
         model.addAttribute("customerList", customerList);
         return "admin-dashboard";
     }
-}
+
+//
+//    @GetMapping("/dashboard")
+//    public String viewDashboard(Model model, Authentication auth) throws NoSuchUserException {
+//        UserPrincipal user = UserFactory.createUser(auth);
+//        user = userService.getUser(user.getId());
+//        model.addAttribute("user", user);
+//        switch (user.getRole().getRole()) {
+//            case ROLE_USER:
+//                return "user-dashboard";
+//            case ROLE_ADMIN:
+//                return "admin-dashboard";
+//        }
+    }
