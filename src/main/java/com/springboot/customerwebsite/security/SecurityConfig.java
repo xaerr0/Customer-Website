@@ -1,5 +1,6 @@
 package com.springboot.customerwebsite.security;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -11,6 +12,13 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity(debug = true)
 public class SecurityConfig {
+//TODO create user-dashboard html - edit profile (use add new customer)
+    //TODO spruce up admin-dash
+    //TODO make instrument-list only viewable by admin, spruce it up
+    //TODO make it so after use created, they edit their customer info
+
+    @Autowired
+    LoginSuccessHandler loginSuccessHandler;
 
     @Bean
     public SecurityFilterChain filterChain (HttpSecurity httpSecurity) throws Exception {
@@ -19,11 +27,15 @@ public class SecurityConfig {
                 .authorizeRequests(auth -> auth
                         .antMatchers("/", "/webjars/**", "/css/**",
                         "/login/**", "/images/**", "/register", "/error", "/landing-page").permitAll()
-                        .antMatchers("/customer-list", "/admin-dashboard").hasRole("ADMIN")
+                        .antMatchers("/customer-list", "/admin-dashboard", "/assign-instrument").hasRole("ADMIN")
+
                         .antMatchers("/user-dashboard").hasRole("USER")
                         .anyRequest().hasRole("USER"))
                 .formLogin()
-                .loginPage("/login").permitAll();
+                .loginPage("/login").permitAll()
+                .successHandler(loginSuccessHandler);
+
+
 
 
         return httpSecurity.build();
