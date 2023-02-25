@@ -1,5 +1,7 @@
 package com.springboot.customerwebsite.controllers;
 
+import com.springboot.customerwebsite.models.securitymodels.Authority;
+import com.springboot.customerwebsite.models.securitymodels.AuthorityEnum;
 import com.springboot.customerwebsite.models.securitymodels.UserPrincipal;
 import com.springboot.customerwebsite.services.UserService;
 import lombok.RequiredArgsConstructor;
@@ -10,9 +12,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.Collections;
 
 @Controller
 @RequiredArgsConstructor
@@ -34,11 +37,8 @@ public class UserController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") UserPrincipal user) throws Exception {
-
         userService.saveUser(user);
-
-
-        return "/welcome";
+        return "redirect:/edit-customer";
     }
 
     @GetMapping("/welcome")
@@ -46,7 +46,7 @@ public class UserController {
         UserPrincipal user = userService.loadUserByUsername(principal.getName());
 //        model.addAttribute("principal",principal);
         model.addAttribute(user);
-        return "/admin-dashboard";
+        return "/";
     }
 
     @GetMapping("/login")
@@ -54,9 +54,17 @@ public class UserController {
         return "/login";
     }
 
-//    @GetMapping("/landing-page")
-//    public ModelAndView landingPage() {
-//        ModelAndView modelAndView = new ModelAndView("landing-page");
-//        return modelAndView;
-//    }
+
+
+
+    @GetMapping("/user-dashboard")
+    public String userDashboard() {
+        return "user-dashboard";
+
+
+
+
+
+}
+
 }

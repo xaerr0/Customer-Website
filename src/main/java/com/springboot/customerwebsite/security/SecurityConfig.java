@@ -12,10 +12,22 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity(debug = true)
 public class SecurityConfig {
+
 //TODO create user-dashboard html - edit profile (use add new customer)
-    //TODO spruce up admin-dash
+
     //TODO make instrument-list only viewable by admin, spruce it up
     //TODO make it so after use created, they edit their customer info
+    //TODO Admin - fix delete customer
+    //TODO Admin - Assign Instrument page
+
+    //TODO Admin - Instrument List Page
+
+    //TODO Logout page?
+
+
+
+
+    //TODO add logout page
 
     @Autowired
     LoginSuccessHandler loginSuccessHandler;
@@ -27,13 +39,19 @@ public class SecurityConfig {
                 .authorizeRequests(auth -> auth
                         .antMatchers("/", "/webjars/**", "/css/**",
                         "/login/**", "/images/**", "/register", "/error", "/landing-page").permitAll()
-                        .antMatchers("/customer-list", "/admin-dashboard", "/assign-instrument").hasRole("ADMIN")
+                        .antMatchers("/customer-list", "/admin-dashboard", "/assign-instrument/**", "/delete/**").hasRole("ADMIN")
 
                         .antMatchers("/user-dashboard").hasRole("USER")
                         .anyRequest().hasRole("USER"))
                 .formLogin()
                 .loginPage("/login").permitAll()
-                .successHandler(loginSuccessHandler);
+                .successHandler(loginSuccessHandler)
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID");
+
 
 
 

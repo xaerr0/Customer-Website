@@ -35,16 +35,8 @@ public class AdminController {
         return "admin-dashboard";
     }
 
-//
-//    @GetMapping("/dashboard")
-//    public String viewDashboard(Model model, Authentication auth) throws NoSuchUserException {
-//        UserPrincipal user = UserFactory.createUser(auth);
-//        user = userService.getUser(user.getId());
-//        model.addAttribute("user", user);
-//        switch (user.getRole().getRole()) {
-//            case ROLE_USER:
-//                return "user-dashboard";
-//            case ROLE_ADMIN:
-//                return "admin-dashboard";
-//        }
+    @GetMapping("/logout")
+    public String logout(){
+        return "logout";
+    }
     }

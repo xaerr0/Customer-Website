@@ -63,11 +63,7 @@ public class UserPrincipal implements UserDetails {
         this.customer = customer;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return email;
-    }
+//    public boolean hasAuthority(List<Authority> authorities) {
+//
+//    }
 }

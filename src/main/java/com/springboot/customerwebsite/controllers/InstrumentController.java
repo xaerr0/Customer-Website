@@ -88,7 +88,7 @@ public class InstrumentController {
         Customer customer = customerService.getCustomer(customerId);
         instrument.rentInstrument(customer);
         instrumentService.saveInstrument(instrument);
-        return "redirect:/";
+        return "redirect:/admin-dashboard";
     }
 
     @GetMapping("/remove/{instrumentId}/{customerId}")
