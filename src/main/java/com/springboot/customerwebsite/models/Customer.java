@@ -1,6 +1,8 @@
 package com.springboot.customerwebsite.models;
 
+import com.springboot.customerwebsite.models.securitymodels.UserPrincipal;
 import lombok.*;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 

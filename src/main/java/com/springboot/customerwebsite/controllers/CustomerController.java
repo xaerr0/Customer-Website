@@ -48,7 +48,7 @@ public class CustomerController {
 //        customer = customerService.saveCustomer(customer);
         user.setCustomer(customer);
         userService.saveUser(user);
-        return "redirect:/";
+        return "redirect:/admin-dashboard";
     }
 
     @GetMapping("/edit/{id}")
@@ -73,12 +73,12 @@ public class CustomerController {
             return "error-page";
         }
         customerService.saveCustomer(customer);
-        return "redirect:/";
+        return "redirect:/admin-dashboard";
     }
 
     @RequestMapping("/delete/{id}")
     public String deleteCustomer(@PathVariable(name = "id") Long id) {
         customerService.deleteCustomer(id);
-        return "redirect:/";
+        return "redirect:/admin-dashboard";
     }
 }

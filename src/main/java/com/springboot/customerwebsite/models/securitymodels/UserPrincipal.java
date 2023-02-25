@@ -61,7 +61,13 @@ public class UserPrincipal implements UserDetails {
         this.password = password;
         this.authorities = authorities;
         this.customer = customer;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public String getEmail() {
+        return email;
     }
 }
