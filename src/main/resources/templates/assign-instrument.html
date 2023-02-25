@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<link th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
 <head>
     <meta charset="utf-8"/>
-    <title>Instrument Assignment</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Assign Instrument</title>
 </head>
 <body>
+<div class="jumbotron jumbotron-fluid">
 <div align="center">
     <h1>Assign Instrument to Customer</h1>
-    <a th:href="@{/admin-dashboard}">Customer List</a>
+    <a th:href="@{/admin-dashboard}">
+        <button type="button" class="btn btn-dark"> Customer List</button></a>
     <br/>
     <form action="#" th:action="@{/instruments/assign}" method="post">
         <input type="hidden" name="customerId" th:value="${customer.id}"/>
@@ -29,11 +34,12 @@
             </tr>
             <tr>
                 <td>
-                    <button type="submit" th:disabled="${instrumentList.isEmpty()}">Save</button>
+                    <button type="submit" class="btn btn-dark btn-block" th:disabled="${instrumentList.isEmpty()}">Save</button>
                 </td>
             </tr>
         </table>
     </form>
+</div>
 </div>
 </body>
 </html>
