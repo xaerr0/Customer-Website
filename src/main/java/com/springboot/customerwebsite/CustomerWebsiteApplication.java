@@ -45,10 +45,8 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
     // In this example, the run method saves some Customer data into the database for testing
     @Override
     public void run(String... args) throws Exception {
-        authorityRepo.deleteAll();
 
-        userPrincipalRepo.deleteAll();
-        customerRepo.deleteAll();
+
 
         Authority userAuth = Authority.builder().authority(AuthorityEnum.ROLE_USER).build();
         Authority adminAuth = Authority.builder().authority(AuthorityEnum.ROLE_ADMIN).build();

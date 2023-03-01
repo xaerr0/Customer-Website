@@ -15,7 +15,7 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
-@Table(name = "user_details")
+@Table(name = "user_principal")
 public class UserPrincipal implements UserDetails {
 
     @Id
@@ -52,7 +52,7 @@ public class UserPrincipal implements UserDetails {
     private boolean isEnabled = true;
 
     //TODO Had to change this to CasecadeType.MERGE from PERSIST to get the app to run. What exactly does that do?
-    @OneToOne(cascade = CascadeType.MERGE, optional = true)
+    @OneToOne(cascade = {CascadeType.MERGE, CascadeType.REMOVE}, optional = true)
     private Customer customer;
 
     public UserPrincipal(String username, String email, String password, List<Authority> authorities, Customer customer) {

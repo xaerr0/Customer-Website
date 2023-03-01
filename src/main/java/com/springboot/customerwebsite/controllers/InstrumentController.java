@@ -97,6 +97,6 @@ public class InstrumentController {
         Customer customer = customerService.getCustomer(customerId);
         instrument.returnInstrument(customer);
         instrumentService.saveInstrument(instrument);
-        return "redirect:/";
+        return "redirect:/admin-dashboard";
     }
 }

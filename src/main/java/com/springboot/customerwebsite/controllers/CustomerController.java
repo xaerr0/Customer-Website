@@ -48,6 +48,7 @@ public class CustomerController {
 //        customer = customerService.saveCustomer(customer);
         user.setCustomer(customer);
         userService.saveUser(user);
+
         return "redirect:/admin-dashboard";
     }
 

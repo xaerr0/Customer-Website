@@ -15,18 +15,11 @@ public class SecurityConfig {
 
 //TODO create user-dashboard html - edit profile (use add new customer)
 
+    //TODO When user is registered, admin login no longer works?
     //TODO make instrument-list only viewable by admin, spruce it up
-    //TODO make it so after use created, they edit their customer info
+    //TODO make it so after user created, they edit their customer info (finish-registration.html)
     //TODO Admin - fix delete customer
-    //TODO Admin - Assign Instrument page
-
-    //TODO Admin - Instrument List Page
-
     //TODO Logout page?
-
-
-
-
     //TODO add logout page
 
     @Autowired

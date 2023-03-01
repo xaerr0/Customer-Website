@@ -26,15 +26,21 @@
             <table border="0" cellpadding="10">
                 <tr>
                 </tr>
+                <td>First Name:</td>
+                <td><input type="text" th:field="*{customer.firstName}" placeholder="First Name" required/></td>
+                </tr>
+                <td>Last Name:</td>
+                <td><input type="text" th:field="*{customer.lastName}" placeholder="Last Name" required/></td>
+                </tr>
+
                 <td>Email:</td>
                 <td><input type="email" th:field="*{email}" placeholder="Example@Email.com" required/></td>
                 </tr>
-                <td>Username:</td>
-                <td><input type="text" th:field="*{username}" placeholder="Username" required/></td>
-                </tr>
+
                 <td>Password:</td>
                 <td><input type="password" th:field="*{password}" placeholder="Password" required/></td>
                 </tr>
+
                 <tr>
                     <td colspan="2 ">
                         <button type="submit" class="btn btn-dark btn-block">Save</button>

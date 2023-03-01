@@ -1,12 +1,10 @@
 package com.springboot.customerwebsite.controllers;
 
 import com.springboot.customerwebsite.models.Customer;
-import com.springboot.customerwebsite.models.securitymodels.UserPrincipal;
 import com.springboot.customerwebsite.services.CustomerService;
 import com.springboot.customerwebsite.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,8 +33,11 @@ public class AdminController {
         return "admin-dashboard";
     }
 
+
+
+
     @GetMapping("/logout")
-    public String logout(){
+    public String logout() {
         return "logout";
     }
-    }
+}

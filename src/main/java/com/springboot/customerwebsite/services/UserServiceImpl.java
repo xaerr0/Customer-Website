@@ -35,9 +35,9 @@ public class UserServiceImpl implements UserService {
 //        if (userPrincipalRepo.findByEmail(user.getEmail()).isPresent()) {
 //            throw new Exception("User already exists");
 //        } else {
+        checkPassword(user.getPassword());
         user.setPassword(encoder.encode(user.getPassword()));
         user.setAuthorities(Collections.singletonList(authorityRepo.findRoleById(1L)));
-        checkPassword(user.getPassword());
         try {
             return userPrincipalRepo.save(user);
         } catch (Exception e) {

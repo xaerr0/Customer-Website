@@ -19,16 +19,16 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String firstName;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String lastName;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private Integer age;
 
-    @Column(nullable = false)
+//    @Column(nullable = false)
     private String address;
 
     @ManyToOne
