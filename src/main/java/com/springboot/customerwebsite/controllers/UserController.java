@@ -47,6 +47,7 @@ public class UserController {
 
     @PostMapping("/register")
     public String registerUser(@ModelAttribute("user") UserPrincipal user) throws Exception {
+        customerService.saveCustomer(user.getCustomer());
         userService.saveUser(user);
         return "redirect:/edit-customer";
     }

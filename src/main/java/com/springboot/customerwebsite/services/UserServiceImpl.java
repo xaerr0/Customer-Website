@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collections;
 
@@ -30,6 +31,7 @@ public class UserServiceImpl implements UserService {
 //    UserMetaRepo userMetaRepo;
 
 
+    @Transactional
     @Override
     public UserPrincipal saveUser(UserPrincipal user) throws Exception {
 //        if (userPrincipalRepo.findByEmail(user.getEmail()).isPresent()) {

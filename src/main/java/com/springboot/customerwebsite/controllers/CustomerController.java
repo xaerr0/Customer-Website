@@ -65,6 +65,7 @@ public class CustomerController {
         return mav;
     }
 
+    //TODO Fix Return to user-dashboard
     @PostMapping("/update/{id}")
     public String updateCustomer(@PathVariable(name = "id") Long id, @ModelAttribute("customer") Customer customer, Model model) {
         if (!id.equals(customer.getId())) {
