@@ -49,7 +49,7 @@ public class UserController {
     public String registerUser(@ModelAttribute("user") UserPrincipal user) throws Exception {
         customerService.saveCustomer(user.getCustomer());
         userService.saveUser(user);
-        return "redirect:/edit-customer";
+        return "redirect:/edit-profile";
     }
 
     @GetMapping("/welcome")

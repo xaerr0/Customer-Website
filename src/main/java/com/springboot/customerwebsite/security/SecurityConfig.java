@@ -13,27 +13,18 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity(debug = true)
 public class SecurityConfig {
 
-//TODO create user-dashboard html - edit profile (use add new customer)
-
-    //TODO When user is registered, admin login no longer works?
-    //TODO make instrument-list only viewable by admin, spruce it up
-    //TODO make it so after user created, they edit their customer info (finish-registration.html)
-    //TODO Admin - fix delete customer
-    //TODO Logout page?
-    //TODO add logout page
 
     @Autowired
     LoginSuccessHandler loginSuccessHandler;
 
     @Bean
-    public SecurityFilterChain filterChain (HttpSecurity httpSecurity) throws Exception {
+    public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .authorizeRequests(auth -> auth
                         .antMatchers("/", "/webjars/**", "/css/**",
-                        "/login/**", "/images/**", "/register", "/error", "/landing-page").permitAll()
+                                "/login/**", "/images/**", "/register", "/error", "/landing-page").permitAll()
                         .antMatchers("/customer-list", "/admin-dashboard", "/assign-instrument/**", "/delete/**").hasRole("ADMIN")
-
                         .antMatchers("/user-dashboard").hasRole("USER")
                         .anyRequest().hasRole("USER"))
                 .formLogin()
@@ -44,17 +35,11 @@ public class SecurityConfig {
                 .logoutUrl("/logout")
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID");
-
-
-
-
-
         return httpSecurity.build();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder()
-    {
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

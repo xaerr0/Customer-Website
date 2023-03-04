@@ -52,21 +52,21 @@ public class CustomerController {
         return "redirect:/admin-dashboard";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editprofile/{id}")
     // The path variable "id" is used to pull a customer from the database
     public ModelAndView showEditCustomerPage(@PathVariable(name = "id") Long id) {
         // Since the previous methods use Model, this one uses ModelAndView
         // to get some experience using both. Model is more common these days,
         // but ModelAndView accomplishes the same thing and can be useful in
         // certain circumstances. The view name is passed to the constructor.
-        ModelAndView mav = new ModelAndView("edit-customer");
+        ModelAndView mav = new ModelAndView("edit-profile");
         Customer customer = customerService.getCustomer(id);
         mav.addObject("customer", customer);
         return mav;
     }
 
     //TODO Fix Return to user-dashboard
-    @PostMapping("/update/{id}")
+    @PostMapping("/updateprofile/{id}")
     public String updateCustomer(@PathVariable(name = "id") Long id, @ModelAttribute("customer") Customer customer, Model model) {
         if (!id.equals(customer.getId())) {
             model.addAttribute("message",
@@ -75,7 +75,7 @@ public class CustomerController {
             return "error-page";
         }
         customerService.saveCustomer(customer);
-        return "redirect:/admin-dashboard";
+        return "redirect:/user-dashboard";
     }
 
     @RequestMapping("/delete/{id}")
