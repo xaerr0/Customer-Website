@@ -9,37 +9,40 @@
 </head>
 <body>
 <div class="jumbotron jumbotron-fluid">
-<div align="center">
-    <h1>Assign Instrument to Customer</h1>
-    <a th:href="@{/admin-dashboard}">
-        <button type="button" class="btn btn-dark"> Customer List</button></a>
-    <br/>
-    <form action="#" th:action="@{/instruments/assign}" method="post">
-        <input type="hidden" name="customerId" th:value="${customer.id}"/>
-        <table border="0" cellpadding="10">
-            <tr>
-                <td>Customer First Name: <strong><span th:text="${customer.firstName}"></span></strong></td>
-            </tr>
-            <tr>
-                <td>Customer Last Name: <strong><span th:text="${customer.lastName}"></span></strong></td>
-            </tr>
+    <div align="center">
+        <h1>Assign Instrument to Customer</h1>
+        <a th:href="@{/admin-dashboard}">
+            <button type="button" class="btn btn-dark"> Customer List</button>
+        </a>
+        <br/>
+        <form action="#" th:action="@{/instruments/assign}" method="post">
+            <input type="hidden" name="customerId" th:value="${customer.id}"/>
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td>Customer First Name: <strong><span th:text="${customer.firstName}"></span></strong></td>
+                </tr>
+                <tr>
+                    <td>Customer Last Name: <strong><span th:text="${customer.lastName}"></span></strong></td>
+                </tr>
 
-            <tr>
-                <td>Assign Instrument:
-                    <select class="form-select" th:name="instrumentId">
-                        <option th:if="${instrumentList.isEmpty()}">None Available</option>
-                        <option th:each="instrument : ${instrumentList}" th:value="${instrument.id}"
-                                th:text="${instrument.toString()}"></option>
-                    </select></td>
-            </tr>
-            <tr>
-                <td>
-                    <button type="submit" class="btn btn-dark btn-block" th:disabled="${instrumentList.isEmpty()}">Save</button>
-                </td>
-            </tr>
-        </table>
-    </form>
-</div>
+                <tr>
+                    <td>Assign Instrument:
+                        <select class="form-select" th:name="instrumentId">
+                            <option th:if="${instrumentList.isEmpty()}">None Available</option>
+                            <option th:each="instrument : ${instrumentList}" th:value="${instrument.id}"
+                                    th:text="${instrument.toString()}"></option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>
+                        <button type="submit" class="btn btn-dark btn-block" th:disabled="${instrumentList.isEmpty()}">
+                            Save
+                        </button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
 </div>
 </body>
 </html>
