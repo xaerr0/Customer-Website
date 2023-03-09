@@ -50,7 +50,6 @@ public class AdminController {
         return mav;
     }
 
-
     @PostMapping("/update/{id}")
     public String updateCustomer(@PathVariable(name = "id") Long id, @ModelAttribute("customer") Customer customer, Model model) {
         if (!id.equals(customer.getId())) {
@@ -62,9 +61,6 @@ public class AdminController {
         customerService.saveCustomer(customer);
         return "redirect:/admin-dashboard";
     }
-
-
-
 
     @GetMapping("/logout")
     public String logout() {
