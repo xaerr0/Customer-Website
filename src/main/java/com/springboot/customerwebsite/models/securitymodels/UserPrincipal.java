@@ -2,7 +2,6 @@ package com.springboot.customerwebsite.models.securitymodels;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.springboot.customerwebsite.models.Customer;
-//import com.springboot.customerwebsite.models.UserMeta;
 import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -62,8 +61,4 @@ public class UserPrincipal implements UserDetails {
         this.authorities = authorities;
         this.customer = customer;
     }
-
-//    public boolean hasAuthority(List<Authority> authorities) {
-//
-//    }
 }
