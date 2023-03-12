@@ -35,9 +35,6 @@ public class LoginSuccessHandler implements AuthenticationSuccessHandler {
         redirectStrategy.sendRedirect(request, response, targetUrl);
     }
 
-
-
-
     private String determineTargetUrl(Authentication authentication) {
         Collection<? extends GrantedAuthority> auths = authentication.getAuthorities();
         for (final GrantedAuthority auth : auths) {

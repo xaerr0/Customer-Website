@@ -10,7 +10,6 @@ import com.springboot.customerwebsite.repositories.CustomerRepo;
 import com.springboot.customerwebsite.repositories.UserPrincipalRepo;
 import com.springboot.customerwebsite.services.CustomerService;
 import com.springboot.customerwebsite.services.InstrumentService;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -47,7 +46,6 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 
-
         Authority userAuth = Authority.builder().authority(AuthorityEnum.ROLE_USER).build();
         Authority adminAuth = Authority.builder().authority(AuthorityEnum.ROLE_ADMIN).build();
 
@@ -55,8 +53,6 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
         if (authorityRepo.findAll().isEmpty()) {
             authorityRepo.saveAll(Arrays.asList(userAuth, adminAuth));
         }
-
-
 
 
         if (userPrincipalRepo.findAll().isEmpty()) {
@@ -69,21 +65,21 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
                     .build();
             customerRepo.save(customer);
 
-                UserPrincipal superUser = UserPrincipal.builder()
-                        .username("admin")
-                        .email("admin@email.com")
-                        .password(passwordEncoder.encode("adminadmin"))
-                        .isAccountNonExpired(true)
-                        .isEnabled(true)
-                        .isCredentialsNonExpired(true)
-                        .isAccountNonLocked(true)
-                        .authorities(Arrays.asList(userAuth, adminAuth))
-                        .customer(customer)
-                        .build();
+            UserPrincipal superUser = UserPrincipal.builder()
+                    .username("admin")
+                    .email("admin@email.com")
+                    .password(passwordEncoder.encode("adminadmin"))
+                    .isAccountNonExpired(true)
+                    .isEnabled(true)
+                    .isCredentialsNonExpired(true)
+                    .isAccountNonLocked(true)
+                    .authorities(Arrays.asList(userAuth, adminAuth))
+                    .customer(customer)
+                    .build();
 
-                userPrincipalRepo.save(superUser);
+            userPrincipalRepo.save(superUser);
 
-            }
+        }
 
 
 ////        customerService.deleteAllCustomers();
@@ -137,5 +133,5 @@ public class CustomerWebsiteApplication implements CommandLineRunner {
 //        }
 
 
-        }
     }
+}
