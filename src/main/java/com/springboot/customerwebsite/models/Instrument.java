@@ -29,7 +29,6 @@ public class Instrument {
 
     private Integer rentedOut;
 
-
     @OneToMany(mappedBy = "instrument")
     private List<Customer> customers;
 
